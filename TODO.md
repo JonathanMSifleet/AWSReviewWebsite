@@ -1,5 +1,11 @@
+- Add comments
 - Add Unit / Integration tests
-- Handle missing information e.g. images
+- Display on mobile
 - Fix CSS issues
-- Comments
-- Refactor where possible
+- Fix in-line html in reviews
+- Fix delete account functionality not working
+- Handle more errors
+- Implement ability to add reviews without manually using DynamoDB
+- Implement front-end for setting a review picture
+- Implement postComment functionality
+- Refactor where appropriate

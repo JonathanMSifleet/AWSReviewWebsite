@@ -1,4 +1,8 @@
+[Project is live here](https://dbiv9g9gtm58o.cloudfront.net)
+
 This is a recreation of my [my MEAN-stack game-review website](https://github.com/JonathanMSifleet/MEANReviewWebsite), which in itself is a recreation of [a piece of university coursework](https://github.com/JonathanMSifleet/GameReviewWebsite) which was produced using PHP/CodeIgniter. This project will use DynamoDB and AWS instead of MongoDB and Express.
+
+Please check TODO.md
 
 ---
 
@@ -6,7 +10,7 @@ If deploying to your own AWS account, all AWS end points, resource names etc. wi
 
 ---
 
-Preliminary setup:
+Preliminary authentication setup:
 
 1. Sign up for an https://auth0.com
 2. Set up an auth0 application:
@@ -31,7 +35,7 @@ Preliminary setup:
 - Create role:
 - Enter your details
 
-6. Create a [CURL token](https://gist.github.com/arielweinberger/21d3b72bb4f345a410abb7e98a17cc96). This is for postman.
+6. (Optional) Create a [CURL token](https://gist.github.com/arielweinberger/21d3b72bb4f345a410abb7e98a17cc96). This is used as the bearer token in [Postman](https://www.postman.com/).
 7. Back to Application settings:
 
 - Copy certificate
@@ -43,4 +47,5 @@ Set-up:
 
 1. Run "npm run iPax" in terminal
 2. Run "npm run fullDeploy" in terminal
-3. Update bucket names and other deployment specific details such as endpoint URLs in project root/backend/serverless.yml and services in root/client/src/app
+3. Update all hard-coded names such as bucket names, endpoint URLs etc.
+4. Populate DynamoDB with reviews found in root/libData/all-reviews
