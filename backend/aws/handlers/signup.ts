@@ -1,10 +1,10 @@
+import cors from '@middy/http-cors';
+import DynamoDB from 'aws-sdk/clients/dynamodb';
+import EmailValidator from 'email-validator';
+import middy from 'middy';
 import { createAWSResErr } from '../sharedFunctions/createAWSResErr';
-const middy = require('middy');
-const cors = require('@middy/http-cors');
-const AWS = require('aws-sdk');
-const EmailValidator = require('email-validator');
 
-const dynamodb = new AWS.DynamoDB.DocumentClient();
+const db = new DynamoDB.DocumentClient();
 
 async function signup(event: { body: string }, _context: any) {
   const { username, firstName, email, password } = JSON.parse(event.body);
@@ -138,7 +138,7 @@ async function checkUserExists(email: string) {
   };
 
   try {
-    const result = await dynamodb.get(params).promise();
+    const result = await db.get(params).promise();
 
     return result.Item;
   } catch (e) {
@@ -163,7 +163,7 @@ async function insertUserToDB(
     ReturnConsumedCapacity: 'TOTAL'
   };
 
-  return await dynamodb.put(params).promise();
+  return await db.put(params).promise();
 }
 
 export const handler = middy(signup).use(cors());

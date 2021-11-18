@@ -1,6 +1,5 @@
+import jwt from 'jsonwebtoken';
 import { createAWSResErr } from '../sharedFunctions/createAWSResErr';
-
-const jwt = require('jsonwebtoken');
 
 // By default, API Gateway authorizations are cached (TTL) for 300 seconds.
 // This policy will authorize all requests to the same API Gateway instance where the

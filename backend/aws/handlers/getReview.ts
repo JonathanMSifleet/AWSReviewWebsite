@@ -1,7 +1,7 @@
-const middy = require('middy');
-const cors = require('@middy/http-cors');
-import { getReviewBySlug } from '../sharedFunctions/getReviewBySlug';
+import cors from '@middy/http-cors';
+import middy from 'middy';
 import { createAWSResErr } from '../sharedFunctions/createAWSResErr';
+import { getReviewBySlug } from '../sharedFunctions/getReviewBySlug';
 
 export async function getReview(
   event: { pathParameters: { slug: string } },

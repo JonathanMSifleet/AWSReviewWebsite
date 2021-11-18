@@ -1,8 +1,8 @@
-import AWS from 'aws-sdk';
-const s3 = new AWS.S3();
-const middy = require('@middy/core');
-const cors = require('@middy/http-cors');
+import middy from '@middy/core';
+import cors from '@middy/http-cors';
+import s3 from 'aws-sdk/clients/s3';
 import { createAWSResErr } from '../sharedFunctions/createAWSResErr';
+const storage = new s3();
 
 export async function setReviewPicture(event: {
   pathParameters: { slug: string };
@@ -32,7 +32,7 @@ async function deletePicture(filename: string) {
   };
 
   try {
-    return await s3.deleteObject(params).promise();
+    return await storage.deleteObject(params).promise();
   } catch (error) {
     return createAWSResErr(500, error);
   }
@@ -44,7 +44,7 @@ async function prepareImage(body: string) {
 }
 
 async function uploadPicture(filename: string, body: Buffer) {
-  const result = await s3
+  const result = await storage
     .upload({
       Bucket: process.env.REVIEW_BUCKET_NAME,
       Key: filename,
