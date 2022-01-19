@@ -1,11 +1,5 @@
-// using webpack 4
-// see https://itnext.io/how-to-optimise-your-serverless-typescript-webpack-eslint-setup-for-performance-86d052284505
-
-const path = require('path');
-
-const nodeExternals = require('webpack-node-externals');
-// runs TypeScript linting on separate process
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const path = require('path');
 
 module.exports = {
   context: __dirname,
@@ -23,7 +17,6 @@ module.exports = {
     chunkFilename: '[id].[chunkhash].js'
   },
   target: 'node',
-  externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
   module: {
     rules: [
       {
@@ -37,18 +30,15 @@ module.exports = {
         loader: 'ts-loader',
         exclude: [[/node_modules/], [/.serverless/], [/.webpack/]],
         options: {
-          transpileOnly: true,
           experimentalWatchApi: true
         }
       }
     ]
   },
   plugins: [
-    new ForkTsCheckerWebpackPlugin({
-      eslint: true,
-      eslintOptions: {
-        cache: true
-      }
-    })
-  ]
+    new ForkTsCheckerWebpackPlugin()
+  ],
+  watchOptions: {
+    ignored: /node_modules/
+  }
 };

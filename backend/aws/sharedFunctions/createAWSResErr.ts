@@ -1,9 +1,7 @@
 export async function createAWSResErr(statusCode: number, message: any) {
-  if (Array.isArray(message)) {
-    await logErrors(message);
-  } else {
-    console.error(message);
-  }
+  Array.isArray(message)
+    ? logErrors(message)
+    : console.error(message);
 
   return {
     statusCode,
@@ -11,7 +9,7 @@ export async function createAWSResErr(statusCode: number, message: any) {
   };
 }
 
-async function logErrors(errors: string[]) {
+function logErrors(errors: string[]) {
   console.error('Errors:');
   errors.forEach((element, i) => {
     console.error(`${i}) ${element}`);

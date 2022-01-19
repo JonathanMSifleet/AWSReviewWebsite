@@ -2,14 +2,14 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "/",
+    "baseUrl": "src",
     "checkJs": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "lib": ["es2020", "dom"],
-    "module": "commonjs",
+    "lib": ["ESNext", "dom"],
+    "module": "ESNext",
     "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -18,16 +18,16 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": false,
-    "target": "es2019",
+    "target": "ESNext",
     "types": ["node"]
   },
   "include": ["**/*.ts"],
   "exclude": [
-    "node_modules/**/*",
     ".serverless/**/*",
     ".webpack/**/*",
     "_warmup/**/*",
     ".vscode/**/*",
-    "*/*.bak"
+    "*/*.bak",
+    "node_modules"
   ]
 }
